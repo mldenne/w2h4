@@ -1,4 +1,5 @@
 require 'csv'
+require 'erb'
 
 data = CSV.read("planet_express_logs.csv", {headers: true, header_converters: :symbol, converters: :all})
 
@@ -38,14 +39,18 @@ end
 
 deliveries = hashed_data.map {|x| Delivery.new(x)}
 
-total_sales = deliveries.select{|x| x.money}.inject(:+)
+total_sales = deliveries.map{|x| x.money}.inject(:+)
 
 fry_bonus = deliveries.select{|x| x.pilot == "Fry"}.collect{|y| y.bonus}.inject(:+)
 amy_bonus = deliveries.select{|x| x.pilot == "Amy"}.collect{|y| y.bonus}.inject(:+)
-bender_bonus = deliveries.select{|x| x.pilot} == "Bender".collect{|y| y.bonus}.inject(:+)
-leela_bonus = deliveries.select{|x| x.pilot} == "Leela".collect{|y| y.bonus}.inject(:+)
+bender_bonus = deliveries.select{|x| x.pilot == "Bender"}.collect{|y| y.bonus}.inject(:+)
+leela_bonus = deliveries.select{|x| x.pilot == "Leela"}.collect{|y| y.bonus}.inject(:+)
 
 fry_trips = deliveries.count{|x| x.pilot == "Fry"}
 amy_trips = deliveries.count{|x| x.pilot == "Amy"}
 bender_trips = deliveries.count{|x| x.pilot == "Bender"}
 leela_trips = deliveries.count{|x| x.pilot == "Leela"}
+
+new_file = File.open("./report.html", "w+")
+new_file << ERB.new(File.read("report.erb")).result(binding)
+new_file.close

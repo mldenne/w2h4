@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Weekly Earnings Report for Planet Express</title>
+</head>
+
+<body>
+  <!-- <h1>Planet Express Earnings for the Week: <%= total_sales %></h1> -->
+
+  <table>
+    <tr>
+      <th>Destination</th>
+      <th>Shipment Type</th>
+      <th>Number of Crates Delivered</th>
+      <th>Total Revenue</th>
+    </tr>
+    <% deliveries.each do |x| %>
+      <tr>
+        <td><%= x.destination %></td>
+        <td><%= x.shipment %></td>
+        <td><%= x.crates %></td>
+        <td><%= x.money %></td>
+      </tr>
+    <% end %>
+  </table>
+
+</body>
+
+</html>
