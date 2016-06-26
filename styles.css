@@ -1,0 +1,25 @@
+/*style modifications to Bootstrap*/
+
+h1 {
+  margin-left: 10%;
+}
+
+h3 {
+  margin-left: 10%;
+}
+
+/*modification to gif file*/
+.embed-responsive {
+  padding-bottom: 25%;
+  left: 10%;
+}
+
+/*table modifications*/
+th {
+  background-color: #99b3ff;
+}
+
+.table {
+  margin-left: 10%;
+  width: 75%;
+}

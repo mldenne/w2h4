@@ -1,14 +1,58 @@
 <!DOCTYPE html>
 <html>
-
 <head>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+  <link type="text/css" rel="stylesheet" href="styles.css"/>
+
   <title>Weekly Earnings Report for Planet Express</title>
+
+  <!-- Javascript for Google Charts -->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Employee', 'Total Money Earned'],
+        ['Fry',     <%= fry_earned %>],
+        ['Amy',     <%= amy_earned %>],
+        ['Bender',  <%= bender_earned %>],
+        ['Leela', <%= leela_earned %>],
+      ]);
+
+      var options = {
+        title: 'Money Earned per Employee',
+        pieHole: 0.4,
+      };
+
+      var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+      chart.draw(data, options);
+    }
+  </script>
+
 </head>
 
 <body>
-  <!-- <h1>Planet Express Earnings for the Week: <%= total_sales %></h1> -->
+  <!-- Total sales for Planet Express -->
+  <h1>Planet Express Earnings for the Week: <%= total_sales %></h1>
+  
+  <!-- animated gif -->
+  <!-- 16:9 aspect ratio -->
+  <div class="embed-responsive embed-responsive-16by9">
+    <iframe class="embed-responsive-item" src="http://tippingpointus.com/wp-content/uploads/2015/08/futurama-good-news-gif.gif"></iframe>
+  </div>
 
-  <table>
+  <!-- tables -->
+  <h3>Table 1. Planet Express Shipments for the Week</h3>
+  <table class="table table-bordered table-hover">
     <tr>
       <th>Destination</th>
       <th>Shipment Type</th>
@@ -25,6 +69,35 @@
     <% end %>
   </table>
 
-</body>
+  <h3>Table 2. Planet Express Number of Trips and Bonus Amount per Employee</h3>
+  <table class="table table-bordered table-hover">
+    <tr>
+      <th>Employee</th>
+      <th>Number of Trips</th>
+      <th>Bonus Amount</th>
+    </tr>
+    <tr>
+      <td>Fry</td>
+      <td><%= fry_trips %></td>
+      <td><%= fry_bonus %></td>
+    </tr>
+    <tr>
+      <td>Amy</td>
+      <td><%= amy_trips %></td>
+      <td><%= amy_bonus %></td>
+    </tr><tr>
+      <td>Bender</td>
+      <td><%= bender_trips %></td>
+      <td><%= bender_bonus %></td>
+    </tr><tr>
+      <td>Leela</td>
+      <td><%= leela_trips %></td>
+      <td><%= leela_bonus %></td>
+    </tr>
+  </table>
 
+  <!-- chart -->
+  <h3>Figure 1. Pie Hole Chart for Total Money Earned per Employee</h3>
+  <div id="donutchart" style="width: 900px; height: 500px;"></div>
+</body>
 </html>

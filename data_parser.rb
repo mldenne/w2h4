@@ -41,6 +41,11 @@ deliveries = hashed_data.map {|x| Delivery.new(x)}
 
 total_sales = deliveries.map{|x| x.money}.inject(:+)
 
+fry_earned = deliveries.select{|x| x.pilot == "Fry"}.collect{|y| y.money}.inject(:+)
+amy_earned = deliveries.select{|x| x.pilot == "Amy"}.collect{|y| y.money}.inject(:+)
+bender_earned = deliveries.select{|x| x.pilot == "Bender"}.collect{|y| y.money}.inject(:+)
+leela_earned = deliveries.select{|x| x.pilot == "Leela"}.collect{|y| y.money}.inject(:+)
+
 fry_bonus = deliveries.select{|x| x.pilot == "Fry"}.collect{|y| y.bonus}.inject(:+)
 amy_bonus = deliveries.select{|x| x.pilot == "Amy"}.collect{|y| y.bonus}.inject(:+)
 bender_bonus = deliveries.select{|x| x.pilot == "Bender"}.collect{|y| y.bonus}.inject(:+)
