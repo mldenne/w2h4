@@ -46,14 +46,13 @@ total_sales = deliveries.map{|x| x.money}.inject(:+)
 pilots = deliveries.collect{|x| x.pilot}.uniq
 
 # total earnings for each pilot
-pilot_earned = pilots.collect do |pilot|
+pilot_earned = pilots.collect do |x|
   {
-    pilot: pilot,
-    revenue: deliveries.select{|y| y.pilot == pilot}.collect{|z| z.money}.inject(:+)
+    pilot: x,
+    revenue: deliveries.select{|y| y.pilot == x}.collect{|z| z.money}.inject(:+)
   }
 end
-
-puts pilot_earned
+puts pilot_earned.inspect
 
 # bonus calculation for each pilot
 fry_bonus = deliveries.select{|x| x.pilot == "Fry"}.collect{|y| y.bonus}.inject(:+)
