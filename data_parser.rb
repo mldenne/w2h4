@@ -33,7 +33,7 @@ class Delivery
   end
 
   def determine_bonus
-    self.bonus = money.to_f * 0.10
+    self.bonus = money * 0.10
   end
 
 end
