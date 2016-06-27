@@ -43,6 +43,8 @@ deliveries = hashed_data.map {|x| Delivery.new(x)}
 
 total_sales = deliveries.map{|x| x.money}.inject(:+)
 
+pilots = deliveries.collect{|x| x.pilot}.uniq
+
 # total earnings for each pilot
 fry_earned = deliveries.select{|x| x.pilot == "Fry"}.collect{|y| y.money}.inject(:+)
 amy_earned = deliveries.select{|x| x.pilot == "Amy"}.collect{|y| y.money}.inject(:+)
