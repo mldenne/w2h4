@@ -1,91 +1,90 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-  <!-- Optional theme -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
-  <!-- Latest compiled and minified JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
-  <link type="text/css" rel="stylesheet" href="styles.css"/>
+    <link type="text/css" rel="stylesheet" href="styles.css"/>
 
-  <title>Weekly Earnings Report for Planet Express</title>
+    <title>Weekly Earnings Report for Planet Express</title>
 
-  <!-- Javascript for Google Charts -->
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <script type="text/javascript">
-    google.charts.load("current", {packages:["corechart"]});
-    google.charts.setOnLoadCallback(drawChart);
-    function drawChart() {
-      var data = google.visualization.arrayToDataTable([
-        ['Employee', 'Total Money Earned'],
-        <% pilot_earned.each do |x| %>
-        <%= [x[:pilot], x[:revenue]] %>,
-        <% end %>
-      ]);
+    <!-- Javascript for Google Charts -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Employee', 'Total Money Earned'],
+          <% pilot_earned.each do |x| %>
+          <%= [x[:pilot], x[:revenue]] %>,
+          <% end %>
+        ]);
 
-      var options = {
-        title: 'Money Earned per Employee',
-        pieHole: 0.4,
-      };
+        var options = {
+          title: 'Money Earned per Employee',
+          pieHole: 0.4,
+        };
 
-      var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-      chart.draw(data, options);
-    }
-  </script>
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+      }
+    </script>
 
-</head>
+  </head>
 
-<body>
-  <!-- Total sales for Planet Express -->
-  <h1>Planet Express Earnings for the Week: <%= total_sales %></h1>
-
-  <!-- animated gif -->
-  <!-- 16:9 aspect ratio -->
-  <div class="embed-responsive embed-responsive-16by9">
-    <iframe class="embed-responsive-item" src="http://tippingpointus.com/wp-content/uploads/2015/08/futurama-good-news-gif.gif"></iframe>
-  </div>
-
-  <!-- tables -->
-  <h3>Table 1. Planet Express Shipments for the Week</h3>
-  <table class="table table-bordered table-hover">
-    <tr>
-      <th>Destination</th>
-      <th>Shipment Type</th>
-      <th>Number of Crates Delivered</th>
-      <th>Total Revenue</th>
-    </tr>
-    <% deliveries.each do |x| %>
+  <body>
+    <!-- animated gif -->
+    <!-- 16:9 aspect ratio -->
+    <div class="embed-responsive embed-responsive-16by9">
+      <iframe class="embed-responsive-item" src="http://tippingpointus.com/wp-content/uploads/2015/08/futurama-good-news-gif.gif"></iframe>
+    </div>
+    <!-- Total sales for Planet Express -->
+    <h1>Planet Express Earnings for the Week: <%= total_sales %></h1>
+    <hr>
+    <!-- tables -->
+    <h3>Table 1. Planet Express Shipments for the Week</h3>
+    <table class="table table-bordered table-hover">
       <tr>
-        <td><%= x.destination %></td>
-        <td><%= x.shipment %></td>
-        <td><%= x.crates %></td>
-        <td><%= x.money %></td>
+        <th>Destination</th>
+        <th>Shipment Type</th>
+        <th>Number of Crates Delivered</th>
+        <th>Total Revenue</th>
       </tr>
-    <% end %>
-  </table>
-
-  <h3>Table 2. Planet Express Number of Trips and Bonus Amount per Employee</h3>
-  <table class="table table-bordered table-hover">
-    <tr>
-      <th>Employee</th>
-      <th>Number of Trips</th>
-      <th>Bonus Amount</th>
-    </tr>
-    <% delivery_bonus.each do |x| %>
+      <% deliveries.each do |x| %>
+        <tr>
+          <td><%= x.destination %></td>
+          <td><%= x.shipment %></td>
+          <td><%= x.crates %></td>
+          <td><%= x.money %></td>
+        </tr>
+      <% end %>
+    </table>
+    <hr>
+    <h3>Table 2. Planet Express Number of Trips and Bonus Amount per Employee</h3>
+    <table class="table table-bordered table-hover">
       <tr>
-        <td><%= x[:pilot] %></td>
-        <td><%= x[:deliveries] %></td>
-        <td><%= x[:bonus] %></td>
+        <th>Employee</th>
+        <th>Number of Trips</th>
+        <th>Bonus Amount</th>
       </tr>
-    <% end %>
-  </table>
-
-  <!-- chart -->
-  <h3>Figure 1. Pie Hole Chart for Total Money Earned per Employee</h3>
-  <div id="donutchart" style="width: 900px; height: 500px;"></div>
-</body>
+      <% delivery_bonus.each do |x| %>
+        <tr>
+          <td><%= x[:pilot] %></td>
+          <td><%= x[:deliveries] %></td>
+          <td><%= x[:bonus] %></td>
+        </tr>
+      <% end %>
+    </table>
+    <hr>
+    <!-- chart -->
+    <h3>Figure 1. Pie Hole Chart for Total Money Earned per Employee</h3>
+    <div id="donutchart" style="width: 900px; height: 500px;"></div>
+  </body>
 </html>
