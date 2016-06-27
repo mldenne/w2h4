@@ -22,9 +22,15 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Employee', 'Total Money Earned'],
-          <% pilot_earned.each do |x| %>
-          <%= [x[:pilot], x[:revenue]] %>,
-          <% end %>
+          
+          ["Fry", 35000],
+          
+          ["Leela", 131295],
+          
+          ["Amy", 15000],
+          
+          ["Bender", 355600],
+          
         ]);
 
         var options = {
@@ -46,7 +52,7 @@
       <iframe class="embed-responsive-item" src="http://tippingpointus.com/wp-content/uploads/2015/08/futurama-good-news-gif.gif"></iframe>
     </div>
     <!-- Total sales for Planet Express -->
-    <h1>Planet Express Earnings for the Week: <%= total_sales %></h1>
+    <h1>Planet Express Earnings for the Week: 536895</h1>
     <hr>
     <!-- tables -->
     <h3>Table 1. Planet Express Shipments for the Week</h3>
@@ -57,14 +63,77 @@
         <th>Number of Crates Delivered</th>
         <th>Total Revenue</th>
       </tr>
-      <% deliveries.each do |x| %>
+      
         <tr>
-          <td><%= x.destination %></td>
-          <td><%= x.shipment %></td>
-          <td><%= x.crates %></td>
-          <td><%= x.money %></td>
+          <td>Earth</td>
+          <td>Hamburgers</td>
+          <td>150</td>
+          <td>30000</td>
         </tr>
-      <% end %>
+      
+        <tr>
+          <td>Moon</td>
+          <td>Tacos</td>
+          <td>33</td>
+          <td>44500</td>
+        </tr>
+      
+        <tr>
+          <td>Earth</td>
+          <td>Movies</td>
+          <td>34</td>
+          <td>5000</td>
+        </tr>
+      
+        <tr>
+          <td>Mars</td>
+          <td>BBQ Sauce</td>
+          <td>999</td>
+          <td>15000</td>
+        </tr>
+      
+        <tr>
+          <td>Uranus</td>
+          <td>Whiskey</td>
+          <td>1000</td>
+          <td>345600</td>
+        </tr>
+      
+        <tr>
+          <td>Jupiter</td>
+          <td>Books</td>
+          <td>10</td>
+          <td>3451</td>
+        </tr>
+      
+        <tr>
+          <td>Pluto</td>
+          <td>Beer</td>
+          <td>100</td>
+          <td>2344</td>
+        </tr>
+      
+        <tr>
+          <td>Uranus</td>
+          <td>Pizza</td>
+          <td>66</td>
+          <td>10000</td>
+        </tr>
+      
+        <tr>
+          <td>Saturn</td>
+          <td>Pizza</td>
+          <td>26</td>
+          <td>1000</td>
+        </tr>
+      
+        <tr>
+          <td>Mercury</td>
+          <td>Pizza</td>
+          <td>36</td>
+          <td>80000</td>
+        </tr>
+      
     </table>
     <hr>
     <h3>Table 2. Planet Express Number of Trips and Bonus Amount per Employee</h3>
@@ -74,13 +143,31 @@
         <th>Number of Trips</th>
         <th>Bonus Amount</th>
       </tr>
-      <% delivery_bonus.each do |x| %>
+      
         <tr>
-          <td><%= x[:pilot] %></td>
-          <td><%= x[:deliveries] %></td>
-          <td><%= x[:bonus] %></td>
+          <td>Fry</td>
+          <td>2</td>
+          <td>3500.0</td>
         </tr>
-      <% end %>
+      
+        <tr>
+          <td>Leela</td>
+          <td>5</td>
+          <td>13129.5</td>
+        </tr>
+      
+        <tr>
+          <td>Amy</td>
+          <td>1</td>
+          <td>1500.0</td>
+        </tr>
+      
+        <tr>
+          <td>Bender</td>
+          <td>2</td>
+          <td>35560.0</td>
+        </tr>
+      
     </table>
     <hr>
     <!-- chart -->
