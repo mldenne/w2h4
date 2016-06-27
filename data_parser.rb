@@ -46,10 +46,14 @@ total_sales = deliveries.map{|x| x.money}.inject(:+)
 pilots = deliveries.collect{|x| x.pilot}.uniq
 
 # total earnings for each pilot
-fry_earned = deliveries.select{|x| x.pilot == "Fry"}.collect{|y| y.money}.inject(:+)
-amy_earned = deliveries.select{|x| x.pilot == "Amy"}.collect{|y| y.money}.inject(:+)
-bender_earned = deliveries.select{|x| x.pilot == "Bender"}.collect{|y| y.money}.inject(:+)
-leela_earned = deliveries.select{|x| x.pilot == "Leela"}.collect{|y| y.money}.inject(:+)
+pilot_earned = pilots.collect do |pilot|
+  {
+    pilot: pilot,
+    revenue: deliveries.select{|y| y.pilot == pilot}.collect{|z| z.money}.inject(:+)
+  }
+end
+
+puts pilot_earned
 
 # bonus calculation for each pilot
 fry_bonus = deliveries.select{|x| x.pilot == "Fry"}.collect{|y| y.bonus}.inject(:+)
@@ -64,6 +68,6 @@ bender_trips = deliveries.count{|x| x.pilot == "Bender"}
 leela_trips = deliveries.count{|x| x.pilot == "Leela"}
 
 # output to html file
-new_file = File.open("./report.html", "w+")
-new_file << ERB.new(File.read("report.erb")).result(binding)
-new_file.close
+# new_file = File.open("./report.html", "w+")
+# new_file << ERB.new(File.read("report.erb")).result(binding)
+# new_file.close
