@@ -62,9 +62,6 @@ delivery_bonus = pilots.collect do |x|
   }
 end
 
-  puts pilot_earned
-  puts delivery_bonus
-
 
 # output to html file
 # new_file = File.open("./report.html", "w+")
