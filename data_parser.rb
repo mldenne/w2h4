@@ -52,19 +52,19 @@ pilot_earned = pilots.collect do |x|
     revenue: deliveries.select{|y| y.pilot == x}.collect{|z| z.money}.inject(:+)
   }
 end
-puts pilot_earned.inspect
-
+# number of trips each pilot made &
 # bonus calculation for each pilot
-fry_bonus = deliveries.select{|x| x.pilot == "Fry"}.collect{|y| y.bonus}.inject(:+)
-amy_bonus = deliveries.select{|x| x.pilot == "Amy"}.collect{|y| y.bonus}.inject(:+)
-bender_bonus = deliveries.select{|x| x.pilot == "Bender"}.collect{|y| y.bonus}.inject(:+)
-leela_bonus = deliveries.select{|x| x.pilot == "Leela"}.collect{|y| y.bonus}.inject(:+)
+delivery_bonus = pilots.collect do |x|
+  {
+    pilot: x,
+    deliveries: deliveries.select{|y| y.pilot == x}.length,
+    bonus: deliveries.select{|z| z.pilot == x}.collect{|b| b.bonus}.inject(:+)
+  }
+end
 
-# number of trips each pilot made
-fry_trips = deliveries.count{|x| x.pilot == "Fry"}
-amy_trips = deliveries.count{|x| x.pilot == "Amy"}
-bender_trips = deliveries.count{|x| x.pilot == "Bender"}
-leela_trips = deliveries.count{|x| x.pilot == "Leela"}
+  puts pilot_earned
+  puts delivery_bonus
+
 
 # output to html file
 # new_file = File.open("./report.html", "w+")
