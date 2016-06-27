@@ -62,8 +62,7 @@ delivery_bonus = pilots.collect do |x|
   }
 end
 
-
 # output to html file
-# new_file = File.open("./report.html", "w+")
-# new_file << ERB.new(File.read("report.erb")).result(binding)
-# new_file.close
+new_file = File.open("./report.html", "w+")
+new_file << ERB.new(File.read("report.erb")).result(binding)
+new_file.close

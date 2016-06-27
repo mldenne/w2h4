@@ -22,10 +22,9 @@
     function drawChart() {
       var data = google.visualization.arrayToDataTable([
         ['Employee', 'Total Money Earned'],
-        ['Fry',     <%= fry_earned %>],
-        ['Amy',     <%= amy_earned %>],
-        ['Bender',  <%= bender_earned %>],
-        ['Leela', <%= leela_earned %>],
+        <% pilot_earned.each do |x| %>
+        <%= [x[:pilot], x[:revenue]] %>,
+        <% end %>
       ]);
 
       var options = {
@@ -43,7 +42,7 @@
 <body>
   <!-- Total sales for Planet Express -->
   <h1>Planet Express Earnings for the Week: <%= total_sales %></h1>
-  
+
   <!-- animated gif -->
   <!-- 16:9 aspect ratio -->
   <div class="embed-responsive embed-responsive-16by9">
@@ -76,24 +75,13 @@
       <th>Number of Trips</th>
       <th>Bonus Amount</th>
     </tr>
-    <tr>
-      <td>Fry</td>
-      <td><%= fry_trips %></td>
-      <td><%= fry_bonus %></td>
-    </tr>
-    <tr>
-      <td>Amy</td>
-      <td><%= amy_trips %></td>
-      <td><%= amy_bonus %></td>
-    </tr><tr>
-      <td>Bender</td>
-      <td><%= bender_trips %></td>
-      <td><%= bender_bonus %></td>
-    </tr><tr>
-      <td>Leela</td>
-      <td><%= leela_trips %></td>
-      <td><%= leela_bonus %></td>
-    </tr>
+    <% delivery_bonus.each do |x| %>
+      <tr>
+        <td><%= x[:pilot] %></td>
+        <td><%= x[:deliveries] %></td>
+        <td><%= x[:bonus] %></td>
+      </tr>
+    <% end %>
   </table>
 
   <!-- chart -->
